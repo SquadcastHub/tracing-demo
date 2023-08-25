@@ -1,3 +1,4 @@
+
 # tracing-demo 
 
 A demo project to showcase jaeger-tracing.
@@ -22,6 +23,7 @@ It tracks and traces requests as they flow through distributed systems or micros
 * Managing telemetry clusters.
 * Code changes required to enable traces.
 
+
 ## The three pillars of observability
 
 **Tracing**
@@ -44,3 +46,15 @@ It tracks and traces requests as they flow through distributed systems or micros
 * Metrics do not provide a detailed view of the application's execution path or individual requests like tracing does.
 
 In summary, tracing, logging, and metrics are all important for observability in an application, but they serve different purposes. Tracing helps identify the root cause of issues by following the execution path of a request, logging captures detailed information about events, and metrics provide a high-level overview of the system's performance.
+
+
+## Tools for Capturing Traces.
+
+- ZIPKIN
+- Jaeger 
+- Opentelmetary 
+- GCP traces
+- AWS X-RAY
+
+## What is Opentelmetary and Jaeger? :thinking:
+
