@@ -10,13 +10,13 @@ It tracks and traces requests as they flow through distributed systems or micros
 
 
 
-**Benifits of Tracing:smiley:** 
+:smiley: **Benifits of Tracing** 
 
 * Provides end-to-end visibility into the journey of each request, allowing for better troubleshooting and debugging of performance issues
 * Helps pinpoint where failures occur and what causes suboptimal performance
 * Enables tracking of application requests as they flow across service boundaries, providing a complete picture of the request trace
 
-**Challenges:sweat_smile:**
+:sweat_smile: **Challenges**
 
 * Generating and collecting trace data in high-throughput systems can be challenging, as millions of spans may be generated per minute.
 * Managing telemetry clusters.
