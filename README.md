@@ -51,13 +51,13 @@ In summary, tracing, logging, and metrics are all important for observability in
 
 - ZIPKIN
 - Jaeger 
-- Opentelmetary 
+- Opentelmetry 
 - GCP traces
 - AWS X-RAY
 
-## What is Opentelmetary and Jaeger? :thinking:
+## What is Opentelmetry and Jaeger? :thinking:
 
-**Opentelmetary**
+**Opentelmetry**
 
 OpenTelemetry is an open-source observability framework designed to provide a unified set of APIs, libraries, agents, and instrumentation for capturing telemetry data from applications.  
 
