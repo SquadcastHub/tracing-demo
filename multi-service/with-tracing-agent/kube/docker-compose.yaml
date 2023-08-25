@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  frontend:
+    image: 'test-frontend:2-tracing'
+    environment:
+      BACKEND_SVC_URL: 'backend:8000'
+      FRONTEND_APP_ADDR: 0.0.0.0:8080
+      JAEGER_ENDPOINT_URL: 'http://jaeger:14268/api/traces'
+    ports:
+      - '8080:8080'
+  backend:
+    image: 'test-backend:2-tracing'
+    environment:
+      DEMO_APP_ADDR: 0.0.0.0:8000
+      DEMO_REDIS_ADDR: 'redis:6379'
+      JAEGER_ENDPOINT_URL: 'http://jaeger:14268/api/traces'
+    ports:
+      - '8000:8000'
+    depends_on:
+      - redis
+  jaeger:
+    image: jaegertracing/all-in-one
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - 16686:16686
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'

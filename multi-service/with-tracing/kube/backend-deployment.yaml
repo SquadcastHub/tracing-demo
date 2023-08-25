@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: backend
+  name: backend
+  namespace: tracing-wo-agent 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: backend
+  template:
+    metadata:
+      labels:
+        service: backend
+    spec:
+      containers:
+        - env:
+            - name: DEMO_APP_ADDR
+              value: 0.0.0.0:8000
+            - name: DEMO_REDIS_ADDR
+              value: redis:6379
+            - name: JAEGER_ENDPOINT_URL
+              value: http://jaeger-collector.internal-tools.svc:14268/api/traces
+          image: gcr.io/sq-stage-94587/tracing-test-backend:2-tracing
+          name: backend
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+      restartPolicy: Always
