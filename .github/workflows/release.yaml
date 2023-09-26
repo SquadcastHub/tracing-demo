@@ -18,6 +18,34 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get Chart Version
+        id: chart_version
+        run: |
+          echo ::set-output name=chart_version::$(yq eval '.version' tracing-chart/Chart.yaml)
+          echo ::set-output name=cr_version::$(yq eval '.version' cr.yaml)
+          echo ::set-output name=chart_dir::$(yq eval '.charts-dir' cr.yaml)
+
+      - name: check if chart and cr version are same
+        id: check_chart_version
+        run: |
+          if [ "${{ steps.chart_version.outputs.chart_version }}" != "${{ steps.chart_version.outputs.cr_version }}" ]; then
+            echo "Chart version and cr version are not same"
+            exit 1
+          else 
+            echo "Chart version and cr version are same"
+            echo ::set-output name=tag::${{ steps.chart_version.outputs.chart_dir }}${{ steps.chart_version.outputs.chart_version }}
+          fi 
+      
+      - name: check if git tag exists
+        id: check_tag
+        run: |
+          if $(git tag -l ${{ steps.check_chart_version.outputs.tag }}); then
+            echo "Tag exists"
+            exit 1
+          else 
+            echo "Tag does not exist"
+          fi
+
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
