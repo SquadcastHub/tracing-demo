@@ -23,14 +23,12 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - run:
-        name: Install chart releaser
-        command: |
+      - name: Install chart releaser
+        run: |
           curl -L -o /tmp/cr.tgz https://github.com/helm/chart-releaser/releases/download/v1.5.0/chart-releaser_1.5.0_linux_amd64.tar.gz
           tar -xv -C /tmp -f /tmp/cr.tgz
           mv /tmp/cr ~/bin/cr
-      
-      - run:
-        name: Package chart using chart releaser
+
+      - name: Package chart using chart releaser
         command: |
             cr package tracing-chart --config ./cr.yaml && ls -lart && git status
