@@ -39,13 +39,13 @@ jobs:
       - name: check if git tag exists
         id: check_tag
         run: |
-          if $(git tag -l ${{ steps.check_chart_version.outputs.tag }}); then
-            echo "Tag already exists not pushing, please change the version in Chart.yaml and cr.yaml"
+          if git rev-parse ${{ steps.check_chart_version.outputs.tag }} >/dev/null 2>&1; then
+            echo "Tag already exists"
             exit 1
           else 
             echo "Tag does not exist"
           fi
-
+          
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
