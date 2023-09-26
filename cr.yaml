@@ -5,4 +5,4 @@ charts-dir: tracing-chart
 sign: false
 charts_repo_url: https://squadcasthub.github.io/tracing-demo
 index-path: .
-version: 0.5.0
+version: 0.6.0
