@@ -69,12 +69,16 @@ jobs:
           git push origin ${{ steps.check_chart_version.outputs.tag }}
 
       - name: chart upload
+        env:
+          GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
         run: |
-          cr upload --config cr.yaml --token ${{ secrets.CI_TOKEN }} --config cr.yaml
+          cr upload --config cr.yaml --token $GITHUB_TOKEN --config cr.yaml
       
       - name: update index.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
         run: |
-          cr index --config cr.yaml --token ${{ secrets.CI_TOKEN }} --config cr.yaml
+          cr index --config cr.yaml --token $GITHUB_TOKEN --config cr.yaml
       
       - name: git push index.yaml
         run: |
