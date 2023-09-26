@@ -33,7 +33,6 @@ jobs:
             exit 1
           else 
             echo "Chart version and cr version are same"
-            # echo ::set-output name=tag::${{ steps.chart_version.outputs.chart_dir }}${{ steps.chart_version.outputs.chart_version }}
             echo "tag=${{ steps.chart_version.outputs.chart_dir }}-${{ steps.chart_version.outputs.chart_version }}" >> $GITHUB_OUTPUT
           fi 
       
