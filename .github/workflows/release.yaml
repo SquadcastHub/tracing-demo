@@ -59,7 +59,8 @@ jobs:
 
       - name: Package chart using chart releaser
         run: |
-            cr package tracing-chart --config cr.yaml
+          rm -rf .cr-release-packages
+          cr package tracing-chart --config cr.yaml
       
       - name: git create tag
         run: |
