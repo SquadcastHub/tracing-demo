@@ -25,6 +25,7 @@ serviceAccount:
 
 podAnnotations: {}
 
+test: {}
 podSecurityContext: {}
   # fsGroup: 2000
 

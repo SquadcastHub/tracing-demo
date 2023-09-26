@@ -73,6 +73,7 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         run: |
           ls -lart .cr-release-packages
+          cat cr.yaml
           cr upload  --token $GITHUB_TOKEN --config cr.yaml
       
       - name: update index.yaml
