@@ -12,6 +12,8 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    env:
+      CHART_DIR: tracing-chart
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,7 +23,7 @@ jobs:
       - name: Get Chart Version
         id: chart_version
         run: |
-          echo "chart_version=$(yq eval '.version' tracing-chart/Chart.yaml)" >> $GITHUB_OUTPUT
+          echo "chart_version=$(yq eval '.version' $CHART_DIR/Chart.yaml)" >> $GITHUB_OUTPUT
           echo "cr_version=$(yq eval '.version' cr.yaml)" >> $GITHUB_OUTPUT
           echo "chart_dir=$(yq eval '.charts-dir' cr.yaml)" >> $GITHUB_OUTPUT
 
@@ -60,7 +62,7 @@ jobs:
       - name: Package chart using chart releaser
         run: |
           rm -rf .cr-release-packages
-          cr package tracing-chart --config cr.yaml
+          cr package $CHART_DIR --config cr.yaml
       
       - name: git create tag
         run: |
