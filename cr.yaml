@@ -1,0 +1,8 @@
+owner: SquadcastHub
+git-repo: tracing-demo
+pages-branch: main
+charts-dir: tracing-chart
+sign: false
+charts_repo_url: https://squadcasthub.github.io/tracing-demo
+index-path: .
+version: 0.2.1
