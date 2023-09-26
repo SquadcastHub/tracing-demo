@@ -59,4 +59,11 @@ jobs:
 
       - name: Package chart using chart releaser
         run: |
-            cr package tracing-chart --config ./cr.yaml && ls -lart && git status
+            cr package tracing-chart --config ./cr.yaml
+      
+      - name: git create tag
+        run: |
+          git add ./.cr-release-packages
+          git commit -m "Release ${{ steps.check_chart_version.outputs.tag }}"
+          git tag ${{ steps.check_chart_version.outputs.tag }}
+          git push origin ${{ steps.check_chart_version.outputs.tag }}
