@@ -63,9 +63,9 @@ jobs:
       
       - name: git create tag
         run: |
-          git add .cr-release-packages
-          git commit -m "Actions: Release ${{ steps.check_chart_version.outputs.tag }}"
-          git tag ${{ steps.check_chart_version.outputs.tag }}
+          git add .cr-release-packages && \
+          git commit -m "Actions: Release ${{ steps.check_chart_version.outputs.tag }}" && \
+          git tag ${{ steps.check_chart_version.outputs.tag }} && \
           git push origin ${{ steps.check_chart_version.outputs.tag }}
 
       - name: chart upload
@@ -82,12 +82,6 @@ jobs:
       
       - name: git push index.yaml
         run: |
-          git add index.yaml
-          git commit -m "Actions: Release index.yaml ${{ steps.check_chart_version.outputs.tag }}"
-          git push origin main
-
-      - name: git add cr package
-        run: |
-          git add .cr-release-packages
-          git commit -m "Actions: Release ${{ steps.check_chart_version.outputs.tag }}"
+          git add index.yaml && \
+          git commit -m "Actions: Release index.yaml ${{ steps.check_chart_version.outputs.tag }}" && \
           git push origin main
