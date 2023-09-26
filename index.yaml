@@ -3,6 +3,16 @@ entries:
   tracing-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-09-26T20:52:50.045335354Z"
+    description: A Helm chart for Kubernetes
+    digest: 423d9f3b99fac10636f660010deea4fd13ceb542fb8c607170e011f682653856
+    name: tracing-chart
+    type: application
+    urls:
+    - https://github.com/SquadcastHub/tracing-demo/releases/download/tracing-chart-0.12.0/tracing-chart-0.12.0.tgz
+    version: 0.12.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-26T18:49:39.233072707Z"
     description: A Helm chart for Kubernetes
     digest: f9ff316392dd979f00e85ed52bc2b97f5d2bdab44a67c4d5f28100a65bcac5af
@@ -31,4 +41,4 @@ entries:
     urls:
     - https://github.com/SquadcastHub/tracing-demo/releases/download/tracing-chart-0.1.0/tracing-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-26T18:49:39.233112909Z"
+generated: "2023-09-26T20:52:50.045349654Z"
