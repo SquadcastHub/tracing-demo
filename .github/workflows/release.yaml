@@ -21,9 +21,9 @@ jobs:
       - name: Get Chart Version
         id: chart_version
         run: |
-          echo ::set-output name=chart_version::$(yq eval '.version' tracing-chart/Chart.yaml)
-          echo ::set-output name=cr_version::$(yq eval '.version' cr.yaml)
-          echo ::set-output name=chart_dir::$(yq eval '.charts-dir' cr.yaml)
+          echo "chart_version=$(yq eval '.version' tracing-chart/Chart.yaml)" >> $GITHUB_OUTPUT
+          echo "cr_version=$(yq eval '.version' cr.yaml)" >> $GITHUB_OUTPUT
+          echo "chart_dir=$(yq eval '.charts-dir' cr.yaml)" >> $GITHUB_OUTPUT
 
       - name: check if chart and cr version are same
         id: check_chart_version
@@ -33,14 +33,15 @@ jobs:
             exit 1
           else 
             echo "Chart version and cr version are same"
-            echo ::set-output name=tag::${{ steps.chart_version.outputs.chart_dir }}${{ steps.chart_version.outputs.chart_version }}
+            # echo ::set-output name=tag::${{ steps.chart_version.outputs.chart_dir }}${{ steps.chart_version.outputs.chart_version }}
+            echo "tag=${{ steps.chart_version.outputs.chart_dir }}-${{ steps.chart_version.outputs.chart_version }}" >> $GITHUB_OUTPUT
           fi 
       
       - name: check if git tag exists
         id: check_tag
         run: |
           if $(git tag -l ${{ steps.check_chart_version.outputs.tag }}); then
-            echo "Tag exists"
+            echo "Tag already exists not pushing, please change the version in Chart.yaml and cr.yaml"
             exit 1
           else 
             echo "Tag does not exist"
