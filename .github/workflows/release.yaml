@@ -72,13 +72,13 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         run: |
-          cr upload --config cr.yaml --token $GITHUB_TOKEN --skip-existing --release-name-template ${{ steps.check_chart_version.outputs.tag }} --config cr.yaml
+          cr upload  --token $GITHUB_TOKEN --skip-existing --release-name-template ${{ steps.check_chart_version.outputs.tag }} --config cr.yaml
       
       - name: update index.yaml
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         run: |
-          cr index --config cr.yaml --token $GITHUB_TOKEN --config cr.yaml
+          cr index --token $GITHUB_TOKEN --config cr.yaml
       
       - name: git push index.yaml
         run: |
